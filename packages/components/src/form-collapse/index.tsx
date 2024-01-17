@@ -17,7 +17,7 @@ import { toArr } from "@formily/shared";
 type ActiveKeys = string | number | Array<string | number>;
 
 type ActiveKey = string | number;
-interface IFormCollapse {
+export interface IFormCollapse {
   activeKeys: ActiveKeys;
   hasActiveKey(key: ActiveKey): boolean;
   setActiveKeys(key: ActiveKeys): void;
@@ -26,11 +26,11 @@ interface IFormCollapse {
   toggleActiveKey(key: ActiveKey): void;
 }
 
-interface IFormCollapseProps extends CollapseReactProps {
+export interface IFormCollapseProps extends CollapseReactProps {
   formCollapse?: IFormCollapse;
 }
 
-type ComposedFormCollapse = React.FC<IFormCollapseProps> & {
+export type ComposedFormCollapse = React.FC<IFormCollapseProps> & {
   CollapsePanel?: React.FC<CollapsePanelProps>;
   createFormCollapse?: (defaultActiveKeys?: ActiveKeys) => IFormCollapse;
 };

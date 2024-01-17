@@ -37,3 +37,5 @@ export * from "./tree-select";
 export * from "./tag-input";
 export * from "./submit";
 export * from "./preview-text";
+export * from "./rate";
+export * from "./slider";

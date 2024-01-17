@@ -1,6 +1,6 @@
 @import "../__styles__/theme.scss";
 
-$semi-items-prefix-cls: "#{$semi-form-prefix}formily-array-items";
+$semi-items-prefix-cls: "#{$semi-form-prefix}-formily-array-items";
 
 .#{$semi-items-prefix-cls}-item-inner {
   visibility: visible;
@@ -15,7 +15,9 @@ $semi-items-prefix-cls: "#{$semi-form-prefix}formily-array-items";
   justify-content: space-between;
   color: $text-color;
 
-  .#{$semi-form-prefix}-formily-item:not(.#{$semi-form-prefix}-formily-item-feedback-layout-popover) {
+  .#{$semi-form-prefix}-formily-item:not(
+      .#{$semi-form-prefix}-formily-item-feedback-layout-popover
+    ) {
     margin-bottom: 0 !important;
 
     .#{$semi-form-prefix}-formily-item-help {
@@ -39,7 +41,9 @@ $semi-items-prefix-cls: "#{$semi-form-prefix}formily-array-items";
   padding: 10px 0;
   justify-content: space-between;
 
-  .#{$semi-form-prefix}-formily-item:not(.#{$semi-form-prefix}-formily-item-feedback-layout-popover) {
+  .#{$semi-form-prefix}-formily-item:not(
+      .#{$semi-form-prefix}-formily-item-feedback-layout-popover
+    ) {
     margin-bottom: 0 !important;
 
     .#{$semi-form-prefix}-formily-item-help {

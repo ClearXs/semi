@@ -1,11 +1,12 @@
 {
-  "version": "1.0.1-beta.16",
+  "version": "0.0.3-beta.0",
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "npmClientArgs": [
-    "--ignore-engines"
-  ],
+  "npmClientArgs": ["--ignore-engines"],
   "command": {
+    "publish": {
+      "registry": "https://packages.aliyun.com/636dc75af003e3b7bb5cad97/npm/npm-registry/"
+    },
     "version": {
       "forcePublish": true,
       "exact": true,

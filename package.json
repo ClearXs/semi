@@ -9,9 +9,10 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "formily-tpl build",
+    "build": "rimraf -rf packages/*/{lib,esm} && lerna run build",
     "build:docs": "dumi build",
     "lint": "eslint .",
+    "test": "jest --coverage",
     "lint:style": "prettier . --write",
     "release": "lerna publish from-package --yes",
     "start": "dumi dev",
@@ -23,7 +24,8 @@
     "version:minor": "lerna version minor",
     "version:patch": "lerna version patch",
     "version:preminor": "lerna version preminor --preid beta",
-    "version:rc": "lerna version prerelease --preid rc"
+    "version:rc": "lerna version prerelease --preid rc",
+    "skippush": "lerna publish --skip-git"
   },
   "commitlint": {
     "extends": [
