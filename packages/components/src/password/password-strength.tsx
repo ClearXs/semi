@@ -1,10 +1,12 @@
-import React, { Fragment } from 'react';
-import { isFn } from '@formily/shared';
+import React, { Fragment } from "react";
+import { isFn } from "@formily/shared";
 
-type ReactRenderPropsChildren<T = any> = React.ReactNode | ((props: T) => React.ReactElement);
+type ReactRenderPropsChildren<T = any> =
+  | React.ReactNode
+  | ((props: T) => React.ReactElement);
 
 interface IPasswordStrengthProps {
-  value?: React.ReactText;
+  value?: string | number;
   children?: ReactRenderPropsChildren<number>;
 }
 
@@ -24,7 +26,7 @@ const isLetter = function (c) {
   return isLower(c) || isUpper(c);
 };
 
-const getStrength = val => {
+const getStrength = (val) => {
   if (!val) {
     return 0;
   }
@@ -155,7 +157,7 @@ const getStrength = val => {
   }
 };
 
-export const PasswordStrength: React.FC<IPasswordStrengthProps> = props => {
+export const PasswordStrength: React.FC<IPasswordStrengthProps> = (props) => {
   if (isFn(props.children)) {
     return props.children(getStrength(String(props.value)));
   } else {

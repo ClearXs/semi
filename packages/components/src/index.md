@@ -19,5 +19,5 @@ features:
 ## 安装
 
 ```bash
-$ npm i -S @formily/core @formily/react @formily/semi
+$ npm i -S @formily/core @formily/react @clearx/formily-semi
 ```

@@ -1,4 +1,4 @@
-# @formily/semi
+# @clearx/formily-semi
 
 > Formily Component Adaptor
 
@@ -13,7 +13,7 @@ https://semi.formilyjs.org/
 ## Install
 
 ```bash
-npm install @formily/semi --save
+npm install @clearx/formily-semi --save
 ```
 
 necessary peerDependencies：
@@ -26,7 +26,7 @@ $ npm i -S @formily/core @formily/react @douyinfe/semi-ui
 
 ```typescript
 import React, { useCallback } from "react";
-import { SchemaForm } from "@formily/semi";
+import { SchemaForm } from "@clearx/formily-semi";
 import { ISchema } from "@formily/json-schema";
 import { useRef } from "react";
 import { Button } from "@douyinfe/semi-ui";

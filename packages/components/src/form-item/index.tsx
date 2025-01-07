@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import cls from "classnames";
 import { usePrefixCls, pickDataProps } from "../__builtins__";
 import { isVoidField } from "@formily/core";
@@ -57,8 +57,8 @@ export interface IFormItemProps {
   direction?: "rtl" | "ltr";
 }
 
-type ComposeFormItem = React.FC<IFormItemProps> & {
-  BaseItem?: React.FC<IFormItemProps>;
+type ComposeFormItem = React.FC<React.PropsWithChildren<IFormItemProps>> & {
+  BaseItem?: React.FC<React.PropsWithChildren<IFormItemProps>>;
 };
 
 const useFormItemLayout = (props: IFormItemProps) => {
@@ -71,8 +71,8 @@ const useFormItemLayout = (props: IFormItemProps) => {
     colon: props.colon ?? layout.colon,
     labelAlign:
       layout.layout === "vertical"
-        ? props.labelAlign ?? layout.labelAlign ?? "left"
-        : props.labelAlign ?? layout.labelAlign ?? "right",
+        ? (props.labelAlign ?? layout.labelAlign ?? "left")
+        : (props.labelAlign ?? layout.labelAlign ?? "right"),
     labelWrap: props.labelWrap ?? layout.labelWrap,
     labelWidth: props.labelWidth ?? layout.labelWidth,
     wrapperWidth: props.wrapperWidth ?? layout.wrapperWidth,
@@ -99,10 +99,9 @@ const ICON_MAP = {
   warning: <IconAlertCircle />,
 };
 
-export const BaseItem: React.FC<IFormItemProps> = (props) => {
+export const BaseItem = (props) => {
   const { children, ...others } = props;
   const [active, setActice] = useState(false);
-  const popoverContainerRef = useRef();
   const formLayout = useFormItemLayout(others);
   const shallowFormLayout = useFormShallowLayout();
   const {
@@ -161,7 +160,6 @@ export const BaseItem: React.FC<IFormItemProps> = (props) => {
       <Popover
         autoAdjustOverflow
         position="top"
-        getPopupContainer={() => popoverContainerRef.current as any}
         content={
           <div
             className={cls({
@@ -190,7 +188,6 @@ export const BaseItem: React.FC<IFormItemProps> = (props) => {
   return (
     <div
       {...pickDataProps(props)}
-      ref={popoverContainerRef as any}
       style={{
         ...style,
         gridColumnStart: `span ${useGridSpan(props.gridSpan)}`,
@@ -241,7 +238,6 @@ export const BaseItem: React.FC<IFormItemProps> = (props) => {
               position="top"
               autoAdjustOverflow
               content={tooltip}
-              getPopupContainer={() => popoverContainerRef.current as any}
               {...tooltipProps}
             >
               {labelChildren}
@@ -251,12 +247,7 @@ export const BaseItem: React.FC<IFormItemProps> = (props) => {
           )}
           {tooltip && tooltipLayout === "icon" && (
             <span className={cls(`${prefixCls}-label-tooltip`)}>
-              <Tooltip
-                position="top"
-                content={tooltip}
-                getPopupContainer={() => popoverContainerRef.current as any}
-                {...tooltipProps}
-              >
+              <Tooltip position="top" content={tooltip} {...tooltipProps}>
                 <IconHelpCircle />
               </Tooltip>
             </span>
@@ -303,7 +294,7 @@ export const BaseItem: React.FC<IFormItemProps> = (props) => {
                 },
                 {
                   size,
-                }
+                },
               )}
             >
               {formatChildren}
@@ -339,7 +330,7 @@ export const BaseItem: React.FC<IFormItemProps> = (props) => {
 };
 
 // 适配
-export const FormItem: ComposeFormItem = connect(
+export const FormItem = connect(
   BaseItem,
   mapProps(
     { validateStatus: true, title: "label", required: true },
@@ -390,9 +381,9 @@ export const FormItem: ComposeFormItem = connect(
       return {
         asterisk,
       };
-    }
-  )
-);
+    },
+  ),
+) as ComposeFormItem;
 
 FormItem.BaseItem = BaseItem;
 

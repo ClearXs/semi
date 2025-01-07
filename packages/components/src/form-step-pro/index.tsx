@@ -10,7 +10,7 @@ import {
 import { VoidField } from "@formily/core";
 import { Steps, Button, Space } from "@douyinfe/semi-ui";
 import { Schema, SchemaKey } from "@formily/json-schema";
-import { FormPath } from '@formily/shared';
+import { FormPath } from "@formily/shared";
 import type { ButtonProps } from "@douyinfe/semi-ui/lib/es/button";
 import type { BasicStepsProps } from "@douyinfe/semi-ui/lib/es/steps";
 import type { StepProps } from "@douyinfe/semi-ui/lib/es/steps";
@@ -160,7 +160,7 @@ const NextWithSubmit: React.FC<
       {...restProps}
       onClick={() => {
         formStepCtx?.props.formStep?.submit((values) => {
-          const target = {}
+          const target = {};
           picks.forEach((pickPath) => {
             const parser = FormPath.parse(pickPath);
             parser.setIn(target, parser.getIn(values));
@@ -210,7 +210,7 @@ export const FormStepPro: ComposedFormStepPro = connect(
       const field = useField<VoidField>();
       const formStep = useMemo(
         () => propsFormStep || FormStep.createFormStep?.(),
-        [propsFormStep]
+        [propsFormStep],
       );
       const prefixCls = usePrefixCls("formily-step-pro", props);
       const schema = useFieldSchema();
@@ -276,13 +276,13 @@ export const FormStepPro: ComposedFormStepPro = connect(
           </div>
         </FormStepProContext.Provider>
       );
-    }
-  )
+    },
+  ),
 );
 
-const StepPane: React.FC<StepProps> = ({ children }) => (
-  <Fragment>{children}</Fragment>
-);
+const StepPane: React.FC<React.PropsWithChildren<StepProps>> = ({
+  children,
+}) => <Fragment>{children}</Fragment>;
 
 FormStepPro.StepPane = StepPane;
 FormStepPro.Previous = Previous;

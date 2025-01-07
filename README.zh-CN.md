@@ -2,9 +2,9 @@
 
 <p align="center">
 <img src="https://img.alicdn.com/tfs/TB1fHhZu4D1gK0jSZFyXXciOVXa-2500-1200.png">
-<img src="https://img.shields.io/npm/dt/@formily/semi"/>
-<img src="https://img.shields.io/npm/dm/@formily/semi"/>
-<a href="https://www.npmjs.com/package/@formily/semi"><img src="https://img.shields.io/npm/v/@formily/semi.svg"></a>
+<img src="https://img.shields.io/npm/dt/@clearx/formily-semi"/>
+<img src="https://img.shields.io/npm/dm/@clearx/formily-semi"/>
+<a href="https://www.npmjs.com/package/@clearx/formily-semi"><img src="https://img.shields.io/npm/v/@clearx/formily-semi.svg"></a>
 <a href="https://codecov.io/gh/formilyjs/semi">
   <img src="https://codecov.io/gh/formilyjs/semi/branch/master/graph/badge.svg"/>
 </a>

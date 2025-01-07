@@ -3,25 +3,26 @@
   "extends": [
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint"
+    "prettier/@typescript-eslint",
   ],
   "env": {
-    "node": true
+    "node": true,
   },
   "plugins": ["@typescript-eslint", "react", "prettier", "markdown"],
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 10,
     "ecmaFeatures": {
-      "jsx": true
-    }
+      "jsx": true,
+    },
   },
   "settings": {
     "react": {
-      "version": "detect"
-    }
+      "version": "detect",
+    },
   },
   "rules": {
+    "semi": "off",
     "prettier/prettier": 0,
     // don't force es6 functions to include space before paren
     "space-before-function-paren": 0,
@@ -52,17 +53,17 @@
     "no-console": [
       "warn",
       {
-        "allow": ["warn", "error", "info"]
-      }
+        "allow": ["warn", "error", "info"],
+      },
     ],
     "prefer-const": 0,
     "no-var": 1,
-    "prefer-rest-params": 0
+    "prefer-rest-params": 0,
   },
   "overrides": [
     {
       "files": ["**/*.md.{jsx,tsx}"],
-      "processor": "markdown/markdown"
+      "processor": "markdown/markdown",
     },
     {
       "files": ["**/*.md/*.{jsx,tsx}"],
@@ -71,8 +72,8 @@
         "no-unused-vars": "error",
         "no-console": "off",
         "react/display-name": "off",
-        "react/prop-types": "off"
-      }
+        "react/prop-types": "off",
+      },
     },
     {
       "files": ["**/*.md/*.{js,ts}"],
@@ -81,14 +82,14 @@
         "no-unused-vars": "off",
         "no-console": "off",
         "react/display-name": "off",
-        "react/prop-types": "off"
-      }
+        "react/prop-types": "off",
+      },
     },
     {
       "files": ["**/demo/*.{jsx,ts,tsx}"],
       "rules": {
-        "no-console": "off"
-      }
-    }
-  ]
+        "no-console": "off",
+      },
+    },
+  ],
 }

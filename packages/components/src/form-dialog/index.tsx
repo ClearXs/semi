@@ -53,7 +53,7 @@ export interface IModalProps
     props: IModalProps & {
       triggerConfirm?: () => any;
       triggerCancel?: () => any;
-    }
+    },
   ) => IModalProps;
   onOk?: (e: any) => void | Promise<any> | boolean;
   onCancel?: (e: any) => void | Promise<any> | boolean;
@@ -63,20 +63,20 @@ export interface IModalProps
 export function FormDialog(
   title: IModalProps,
   id: string,
-  renderer: FormDialogRenderer
+  renderer: FormDialogRenderer,
 ): IFormDialog;
 export function FormDialog(
   title: IModalProps,
-  renderer: FormDialogRenderer
+  renderer: FormDialogRenderer,
 ): IFormDialog;
 export function FormDialog(
   title: ModalTitle,
   id: string,
-  renderer: FormDialogRenderer
+  renderer: FormDialogRenderer,
 ): IFormDialog;
 export function FormDialog(
   title: ModalTitle,
-  renderer: FormDialogRenderer
+  renderer: FormDialogRenderer,
 ): IFormDialog;
 export function FormDialog(title: any, id: any, renderer?: any): IFormDialog {
   if (isFn(id) || React.isValidElement(id)) {
@@ -113,7 +113,7 @@ export function FormDialog(title: any, id: any, renderer?: any): IFormDialog {
   const renderDialog = (
     visible = true,
     resolve?: () => any,
-    reject?: () => any
+    reject?: () => any,
   ) => (
     <Observer>
       {() => (
@@ -175,7 +175,7 @@ export function FormDialog(title: any, id: any, renderer?: any): IFormDialog {
       env.promise = new Promise(async (resolve, reject) => {
         try {
           formProps = await loading(modal.loadingText, () =>
-            applyMiddleware(formProps, env.openMiddlewares)
+            applyMiddleware(formProps, env.openMiddlewares),
           );
           env.form = env.form || createForm(formProps);
         } catch (e) {
@@ -197,11 +197,11 @@ export function FormDialog(title: any, id: any, renderer?: any): IFormDialog {
             },
             async () => {
               await loading(modal.loadingText, () =>
-                applyMiddleware(env.form, env.cancelMiddlewares)
+                applyMiddleware(env.form, env.cancelMiddlewares),
               );
               formDialog.close();
-            }
-          )
+            },
+          ),
         );
       });
       return env.promise;
@@ -216,10 +216,10 @@ export function FormDialog(title: any, id: any, renderer?: any): IFormDialog {
   return formDialog;
 }
 
-const DialogFooter: React.FC = (props) => {
+const DialogFooter = (props) => {
   const ref = useRef<HTMLDivElement>(null);
   const [footer, setFooter] = useState<HTMLDivElement>();
-  const footerRef = useRef<HTMLDivElement>();
+  const footerRef = useRef<HTMLDivElement | undefined>(undefined);
   const prefixCls = usePrefixCls("", {
     prefixCls: "semi-modal",
   });
@@ -228,7 +228,7 @@ const DialogFooter: React.FC = (props) => {
     if (content) {
       if (!footerRef.current) {
         footerRef.current = content.querySelector(
-          `.${prefixCls}-footer`
+          `.${prefixCls}-footer`,
         ) as HTMLDivElement;
         if (!footerRef.current) {
           footerRef.current = document.createElement("div");

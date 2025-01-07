@@ -14,7 +14,7 @@
   // $brightnessStep2: 0.15;
   // $lightColorCount: 5;
   // $darkColorCount: 4;
-  
+
   @return $color;
   @if $isLight {
     @return tint($color, $index / 10);

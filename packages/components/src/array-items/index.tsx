@@ -7,7 +7,12 @@ import {
   RecursionField,
 } from "@formily/react";
 import cls from "classnames";
-import { SortableContainer, SortableElement } from "react-sortable-hoc";
+import {
+  SortableContainer,
+  SortableContainerProps,
+  SortableElement,
+  SortableElementProps,
+} from "react-sortable-hoc";
 import { ISchema } from "@formily/json-schema";
 import { usePrefixCls } from "../__builtins__";
 import { ArrayBase, ArrayBaseMixins } from "../array-base";
@@ -22,6 +27,14 @@ type ComposedArrayItems = React.FC<React.HTMLAttributes<HTMLDivElement>> &
     >;
   };
 
+type SortableListProps = SortableContainerProps & {
+  children?: React.ReactNode;
+};
+
+type SortableItemProps = SortableElementProps & {
+  children?: React.ReactNode;
+};
+
 const SortableItem = SortableElement(
   (props: React.PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>) => {
     const prefixCls = usePrefixCls("formily-array-items");
@@ -30,8 +43,8 @@ const SortableItem = SortableElement(
         {props.children}
       </div>
     );
-  }
-);
+  },
+) as React.ComponentClass<SortableItemProps>;
 
 const SortableList = SortableContainer(
   (props: React.PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>) => {
@@ -41,8 +54,8 @@ const SortableList = SortableContainer(
         {props.children}
       </div>
     );
-  }
-);
+  },
+) as React.ComponentClass<SortableListProps>;
 
 const isAdditionComponent = (schema: ISchema) => {
   return schema["x-component"]?.indexOf("Addition") > -1;
@@ -65,6 +78,7 @@ export const ArrayItems: ComposedArrayItems = observer((props) => {
   const addition = useAddition();
   const dataSource = Array.isArray(field.value) ? field.value : [];
   if (!schema) throw new Error("can not found schema object");
+  // @ts-ignore
   return (
     <ArrayBase>
       <div

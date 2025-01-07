@@ -1,5 +1,8 @@
 @use "sass:math";
-@import './color/colors';
+@use "sass:color";
+@use "color/colors" as colors;
+@use "color/colorPalette" as colorPalette;
+
 $theme: default;
 
 // The prefix to use on all css classes from semi.
@@ -10,36 +13,48 @@ $semi-form-prefix: formily-semi;
 $html-selector: html;
 
 // -------- Colors -----------
-$primary-color: $blue-6;
+$primary-color: colors.$blue-6;
 $info-color: $primary-color;
-$success-color: $green-6;
-$processing-color: $blue-6;
-$error-color: $red-5;
-$highlight-color: $red-5;
-$warning-color: $gold-6;
+$success-color: colors.$green-6;
+$processing-color: colors.$blue-6;
+$error-color: colors.$red-5;
+$highlight-color: colors.$red-5;
+$warning-color: colors.$gold-6;
 $normal-color: #d9d9d9;
 $white: #fff;
 $black: #000;
 
 // Color used by default to control hover and active backgrounds and for
 // alert info backgrounds.
-$primary-1: colorPalette($primary-color, 1); // replace tint($primary-color, 90%)
-$primary-2: colorPalette($primary-color, 2); // replace tint($primary-color, 80%)
-$primary-3: colorPalette($primary-color, 3); // unused
-$primary-4: colorPalette($primary-color, 4); // unused
-$primary-5: colorPalette($primary-color, 5); // color used to control the text color in many active and hover states, replace tint($primary-color, 20%)
+$primary-1: colorPalette.colorPalette(
+  $primary-color,
+  1
+); // replace tint($primary-color, 90%)
+$primary-2: colorPalette.colorPalette(
+  $primary-color,
+  2
+); // replace tint($primary-color, 80%)
+$primary-3: colorPalette.colorPalette($primary-color, 3); // unused
+$primary-4: colorPalette.colorPalette($primary-color, 4); // unused
+$primary-5: colorPalette.colorPalette(
+  $primary-color,
+  5
+); // color used to control the text color in many active and hover states, replace tint($primary-color, 20%)
 $primary-6: $primary-color; // color used to control the text color of active buttons, don't use, use $primary-color
-$primary-7: colorPalette($primary-color, 7); // replace shade($primary-color, 5%)
-$primary-8: colorPalette($primary-color, 8); // unused
-$primary-9: colorPalette($primary-color, 9); // unused
-$primary-10: colorPalette($primary-color, 10); // unused
+$primary-7: colorPalette.colorPalette(
+  $primary-color,
+  7
+); // replace shade($primary-color, 5%)
+$primary-8: colorPalette.colorPalette($primary-color, 8); // unused
+$primary-9: colorPalette.colorPalette($primary-color, 9); // unused
+$primary-10: colorPalette.colorPalette($primary-color, 10); // unused
 
 // Base Scaffolding Variables
 // ---
 
 // Border color
-$border-color-base: rgba(204,204,204,1); // base border outline a component
-$border-color-split: rgba(239,239,239,1); // split border inside a component
+$border-color-base: rgba(204, 204, 204, 1); // base border outline a component
+$border-color-split: rgba(239, 239, 239, 1); // split border inside a component
 $border-color-inverse: $white;
 $border-width-base: 1px; // width of the border for a component
 $border-style-base: solid; // style of a components border
@@ -51,10 +66,11 @@ $component-background: #fff;
 // Popover background color
 $popover-background: $component-background;
 $popover-customize-border-color: $border-color-split;
-$font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-  'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-  'Noto Color Emoji';
-$code-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+$font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$code-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
+  monospace;
 $text-color: fade($black, 85%);
 $text-color-secondary: fade($black, 45%);
 $text-color-inverse: $white;
@@ -65,15 +81,15 @@ $text-color-dark: fade($white, 85%);
 $text-color-secondary-dark: fade($white, 65%);
 $text-selection-bg: $primary-color;
 $font-variant-base: tabular-nums;
-$font-feature-settings-base: 'tnum';
+$font-feature-settings-base: "tnum";
 $font-size-base: 14px;
 $font-size-lg: $font-size-base + 2px;
 $font-size-sm: 12px;
-$heading-1-size: ceil($font-size-base * 2.71);
-$heading-2-size: ceil($font-size-base * 2.14);
-$heading-3-size: ceil($font-size-base * 1.71);
-$heading-4-size: ceil($font-size-base * 1.42);
-$heading-5-size: ceil($font-size-base * 1.14);
+$heading-1-size: math.ceil($font-size-base * 2.71);
+$heading-2-size: math.ceil($font-size-base * 2.14);
+$heading-3-size: math.ceil($font-size-base * 1.71);
+$heading-4-size: math.ceil($font-size-base * 1.42);
+$heading-5-size: math.ceil($font-size-base * 1.14);
 // https://github.com/ant-design/ant-design/issues/20210
 $line-height-base: 1.5715;
 $border-radius-base: 2px;
@@ -112,8 +128,8 @@ $iconfont-css-prefix: anticon;
 
 // LINK
 $link-color: $primary-color;
-$link-hover-color: colorPalette($link-color, 5);
-$link-active-color: colorPalette($link-color, 7);
+$link-hover-color: colorPalette.colorPalette($link-color, 5);
+$link-active-color: colorPalette.colorPalette($link-color, 7);
 $link-decoration: none;
 $link-hover-decoration: none;
 $link-focus-decoration: none;
@@ -153,15 +169,25 @@ $disabled-color-dark: fade(#fff, 35%);
 
 // Shadow
 $shadow-color: rgba(0, 0, 0, 0.15);
-$shadow-1-up: 0 -6px 16px -8px rgba(0, 0, 0, 0.08), 0 -9px 28px 0 rgba(0, 0, 0, 0.05),
+$shadow-1-up:
+  0 -6px 16px -8px rgba(0, 0, 0, 0.08),
+  0 -9px 28px 0 rgba(0, 0, 0, 0.05),
   0 -12px 48px 16px rgba(0, 0, 0, 0.03);
-$shadow-1-down: 0 6px 16px -8px rgba(0, 0, 0, 0.08), 0 9px 28px 0 rgba(0, 0, 0, 0.05),
+$shadow-1-down:
+  0 6px 16px -8px rgba(0, 0, 0, 0.08),
+  0 9px 28px 0 rgba(0, 0, 0, 0.05),
   0 12px 48px 16px rgba(0, 0, 0, 0.03);
-$shadow-1-left: -6px 0 16px -8px rgba(0, 0, 0, 0.08), -9px 0 28px 0 rgba(0, 0, 0, 0.05),
+$shadow-1-left:
+  -6px 0 16px -8px rgba(0, 0, 0, 0.08),
+  -9px 0 28px 0 rgba(0, 0, 0, 0.05),
   -12px 0 48px 16px rgba(0, 0, 0, 0.03);
-$shadow-1-right: 6px 0 16px -8px rgba(0, 0, 0, 0.08), 9px 0 28px 0 rgba(0, 0, 0, 0.05),
+$shadow-1-right:
+  6px 0 16px -8px rgba(0, 0, 0, 0.08),
+  9px 0 28px 0 rgba(0, 0, 0, 0.05),
   12px 0 48px 16px rgba(0, 0, 0, 0.03);
-$shadow-2: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+$shadow-2:
+  0 3px 6px -4px rgba(0, 0, 0, 0.12),
+  0 6px 16px 0 rgba(0, 0, 0, 0.08),
   0 9px 28px 8px rgba(0, 0, 0, 0.05);
 $shadow-color-inverse: $component-background;
 $box-shadow-base: $shadow-2;
@@ -372,20 +398,41 @@ $input-padding-horizontal: $control-padding-horizontal - 1px;
 $input-padding-horizontal-base: $input-padding-horizontal;
 $input-padding-horizontal-sm: $control-padding-horizontal-sm - 1px;
 $input-padding-horizontal-lg: $input-padding-horizontal;
-$input-padding-vertical-base: max(
-  math.div(round((math.div($input-height-base - $font-size-base * $line-height-base, 2)) * 10), 10) -
+$input-padding-vertical-base: math.max(
+  math.div(
+      math.round(
+        (
+            math.div(
+              $input-height-base - $font-size-base * $line-height-base,
+              2
+            )
+          ) *
+          10
+      ),
+      10
+    ) -
     $border-width-base,
   3px
 );
-$input-padding-vertical-sm: max(
-  math.div(round((math.div($input-height-sm - $font-size-base * $line-height-base, 2)) * 10), 10) -
+$input-padding-vertical-sm: math.max(
+  math.div(
+      math.round(
+        (math.div($input-height-sm - $font-size-base * $line-height-base, 2)) *
+          10
+      ),
+      10
+    ) -
     $border-width-base,
   0
 );
 $input-padding-vertical-lg: math.div(
-    ceil((math.div($input-height-lg - $font-size-lg * $line-height-base, 2)) * 10), 10
-  ) - $border-width-base;
-$input-placeholder-color: rgba(191,191,191,1);
+    math.ceil(
+      (math.div($input-height-lg - $font-size-lg * $line-height-base, 2)) * 10
+    ),
+    10
+  ) -
+  $border-width-base;
+$input-placeholder-color: rgba(191, 191, 191, 1);
 $input-color: $text-color;
 $input-icon-color: $input-color;
 $input-border-color: $border-color-base;
@@ -439,9 +486,12 @@ $select-clear-background: $select-background;
 $select-selection-item-bg: $background-color-base;
 $select-selection-item-border-color: $border-color-split;
 $select-single-item-height-lg: 40px;
-$select-multiple-item-height: $input-height-base - $input-padding-vertical-base * 2; // Normal 24px
+$select-multiple-item-height: $input-height-base -
+  $input-padding-vertical-base * 2; // Normal 24px
 $select-multiple-item-height-lg: 32px;
-$select-multiple-item-spacing-half: ceil(math.div($input-padding-vertical-base, 2));
+$select-multiple-item-spacing-half: math.ceil(
+  math.div($input-padding-vertical-base, 2)
+);
 $select-multiple-disabled-background: $input-disabled-bg;
 $select-multiple-item-disabled-color: #bfbfbf;
 $select-multiple-item-disabled-border-color: $select-border-color;
@@ -509,7 +559,8 @@ $modal-header-padding-vertical: $padding-md;
 $modal-header-padding-horizontal: $padding-lg;
 $modal-body-padding: $padding-lg;
 $modal-header-bg: $component-background;
-$modal-header-padding: $modal-header-padding-vertical $modal-header-padding-horizontal;
+$modal-header-padding: $modal-header-padding-vertical
+  $modal-header-padding-horizontal;
 $modal-header-border-width: $border-width-base;
 $modal-header-border-style: $border-style-base;
 $modal-header-title-line-height: 22px;
@@ -551,7 +602,7 @@ $menu-inline-submenu-bg: $background-color-light;
 $menu-highlight-color: $primary-color;
 $menu-highlight-danger-color: $error-color;
 $menu-item-active-bg: $primary-1;
-$menu-item-active-danger-bg: $red-1;
+$menu-item-active-danger-bg: colors.$red-1;
 $menu-item-active-border-width: 3px;
 $menu-item-group-title-color: $text-color-secondary;
 $menu-item-vertical-margin: 4px;
@@ -593,7 +644,10 @@ $table-row-hover-bg: $background-color-light;
 $table-selected-row-color: inherit;
 $table-selected-row-bg: $primary-1;
 $table-body-selected-sort-bg: $table-selected-row-bg;
-$table-selected-row-hover-bg: darken($table-selected-row-bg, 2%);
+$table-selected-row-hover-bg: color.adjust(
+  $table-selected-row-bg,
+  $lightness: -2%
+);
 $table-expanded-row-bg: #fbfbfb;
 $table-padding-vertical: 16px;
 $table-padding-horizontal: 16px;
@@ -611,9 +665,12 @@ $table-font-size-md: $table-font-size;
 $table-font-size-sm: $table-font-size;
 // Sorter
 // Legacy:table-header-sort-active-bg` is used for hover not real active
-$table-header-sort-active-bg: darken($table-header-bg, 3%);
+$table-header-sort-active-bg: color.adjust($table-header-bg, $lightness: -3%);
 // Filter
-$table-header-filter-active-bg: darken($table-header-sort-active-bg, 5%);
+$table-header-filter-active-bg: color.adjust(
+  $table-header-sort-active-bg,
+  $lightness: -5%
+);
 $table-filter-btns-bg: inherit;
 $table-filter-dropdown-bg: $component-background;
 $table-expand-icon-bg: $component-background;
@@ -634,10 +691,16 @@ $tag-line-height: 20px;
 $picker-bg: $component-background;
 $picker-basic-cell-hover-color: $item-hover-bg;
 $picker-basic-cell-active-with-range-color: $primary-1;
-$picker-basic-cell-hover-with-range-color: lighten($primary-color, 35%);
+$picker-basic-cell-hover-with-range-color: color.adjust(
+  $primary-color,
+  $lightness: 35%
+);
 $picker-basic-cell-disabled-bg: $disabled-bg;
 $picker-border-color: $border-color-split;
-$picker-date-hover-range-border-color: lighten($primary-color, 20%);
+$picker-date-hover-range-border-color: color.adjust(
+  $primary-color,
+  $lightness: 20%
+);
 $picker-date-hover-range-color: $picker-basic-cell-hover-with-range-color;
 $picker-time-panel-column-width: 56px;
 $picker-time-panel-column-height: 224px;
@@ -676,7 +739,7 @@ $badge-color: $highlight-color;
 
 // Rate
 // ---
-$rate-star-color: $yellow-6;
+$rate-star-color: colors.$yellow-6;
 $rate-star-bg: $border-color-split;
 $rate-star-size: 20px;
 $rate-star-hover-scale: scale(1.1);
@@ -698,7 +761,9 @@ $card-actions-background: $component-background;
 $card-actions-li-margin: 12px 0;
 $card-skeleton-bg: #cfd8dc;
 $card-background: $component-background;
-$card-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 0 3px 6px 0 rgba(0, 0, 0, 0.12),
+$card-shadow:
+  0 1px 2px -2px rgba(0, 0, 0, 0.16),
+  0 3px 6px 0 rgba(0, 0, 0, 0.12),
   0 5px 12px 4px rgba(0, 0, 0, 0.09);
 $card-radius: $border-radius-base;
 $card-head-tabs-margin-bottom: -17px;
@@ -725,8 +790,12 @@ $tabs-card-head-background: $background-color-light;
 $tabs-card-height: 40px;
 $tabs-card-active-color: $primary-color;
 $tabs-card-horizontal-padding: (
-    math.div($tabs-card-height - floor($font-size-base * $line-height-base), 2)
-  ) - $border-width-base $padding-md;
+    math.div(
+      $tabs-card-height - math.floor($font-size-base * $line-height-base),
+      2
+    )
+  ) -
+  $border-width-base $padding-md;
 $tabs-card-horizontal-padding-sm: 6px $padding-md;
 $tabs-card-horizontal-padding-lg: 7px $padding-md 6px;
 $tabs-title-font-size: $font-size-base;
@@ -781,10 +850,10 @@ $switch-color: $primary-color;
 $switch-bg: $component-background;
 $switch-shadow-color: fade(#00230b, 20%);
 $switch-padding: 2px;
-$switch-inner-margin-min: ceil($switch-height * 0.3);
-$switch-inner-margin-max: ceil($switch-height * 1.1);
-$switch-sm-inner-margin-min: ceil($switch-sm-height * 0.3);
-$switch-sm-inner-margin-max: ceil($switch-sm-height * 1.1);
+$switch-inner-margin-min: math.ceil($switch-height * 0.3);
+$switch-inner-margin-max: math.ceil($switch-height * 1.1);
+$switch-sm-inner-margin-min: math.ceil($switch-sm-height * 0.3);
+$switch-sm-inner-margin-max: math.ceil($switch-sm-height * 1.1);
 
 // Pagination
 // ---
@@ -796,7 +865,10 @@ $pagination-font-weight-active: 500;
 $pagination-item-bg-active: $component-background;
 $pagination-item-link-bg: $component-background;
 $pagination-item-disabled-color-active: $white;
-$pagination-item-disabled-bg-active: darken($disabled-bg, 10%);
+$pagination-item-disabled-bg-active: color.adjust(
+  $disabled-bg,
+  $lightness: -10%
+);
 $pagination-item-input-bg: $component-background;
 $pagination-mini-options-size-changer-top: 0px;
 
@@ -894,17 +966,17 @@ $wave-animation-width: 6px;
 
 // Alert
 // ---
-$alert-success-border-color: colorPalette($success-color, 3);
-$alert-success-bg-color: colorPalette($success-color, 1);
+$alert-success-border-color: colorPalette.colorPalette($success-color, 3);
+$alert-success-bg-color: colorPalette.colorPalette($success-color, 1);
 $alert-success-icon-color: $success-color;
-$alert-info-border-color: colorPalette($info-color, 3);
-$alert-info-bg-color: colorPalette($info-color, 1);
+$alert-info-border-color: colorPalette.colorPalette($info-color, 3);
+$alert-info-bg-color: colorPalette.colorPalette($info-color, 1);
 $alert-info-icon-color: $info-color;
-$alert-warning-border-color: colorPalette($warning-color, 3);
-$alert-warning-bg-color: colorPalette($warning-color, 1);
+$alert-warning-border-color: colorPalette.colorPalette($warning-color, 3);
+$alert-warning-bg-color: colorPalette.colorPalette($warning-color, 1);
 $alert-warning-icon-color: $warning-color;
-$alert-error-border-color: colorPalette($error-color, 3);
-$alert-error-bg-color: colorPalette($error-color, 1);
+$alert-error-border-color: colorPalette.colorPalette($error-color, 3);
+$alert-error-bg-color: colorPalette.colorPalette($error-color, 1);
 $alert-error-icon-color: $error-color;
 $alert-message-color: $heading-color;
 $alert-text-color: $text-color;
@@ -915,8 +987,10 @@ $alert-with-description-no-icon-padding-vertical: $padding-md - 1px;
 $alert-with-description-padding-vertical: $padding-md - 1px;
 $alert-with-description-icon-size: 24px;
 $alert-with-description-padding: $alert-with-description-padding-vertical 15px
-  $alert-with-description-no-icon-padding-vertical $alert-with-description-icon-size;
-$alert-icon-top: 8px + $font-size-base * math.div($line-height-base, 2) - math.div($font-size-base, 2);
+  $alert-with-description-no-icon-padding-vertical
+  $alert-with-description-icon-size;
+$alert-icon-top: 8px + $font-size-base *
+  math.div($line-height-base, 2) - math.div($font-size-base, 2);
 
 // List
 // ---
@@ -1013,4 +1087,7 @@ $image-color: #fff;
 $image-mask-font-size: 16px;
 $image-preview-operation-size: 18px;
 $image-preview-operation-color: $text-color-dark;
-$image-preview-operation-disabled-color: fade($image-preview-operation-color, 25%);
+$image-preview-operation-disabled-color: fade(
+  $image-preview-operation-color,
+  25%
+);

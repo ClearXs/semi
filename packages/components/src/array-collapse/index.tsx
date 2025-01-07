@@ -59,7 +59,7 @@ const range = (count: number) => Array.from({ length: count }).map((_, i) => i);
 
 const takeDefaultActiveKeys = (
   dataSourceLength: number,
-  defaultOpenPanelCount = Infinity
+  defaultOpenPanelCount = Infinity,
 ) => {
   if (dataSourceLength < defaultOpenPanelCount) return range(dataSourceLength);
   return range(defaultOpenPanelCount);
@@ -80,7 +80,10 @@ export const ArrayCollapse: ComposedArrayCollapse = observer(
     const field = useField<ArrayField>();
     const dataSource = Array.isArray(field.value) ? field.value : [];
     const [activeKeys, setActiveKeys] = useState<number[]>(
-      takeDefaultActiveKeys(dataSource.length, respProps.defaultOpenPanelCount)
+      takeDefaultActiveKeys(
+        dataSource.length,
+        respProps.defaultOpenPanelCount || 5,
+      ),
     );
     const schema = useFieldSchema();
     const prefixCls = usePrefixCls("array-collapse", respProps);
@@ -89,8 +92,8 @@ export const ArrayCollapse: ComposedArrayCollapse = observer(
         setActiveKeys(
           takeDefaultActiveKeys(
             dataSource.length,
-            respProps.defaultOpenPanelCount
-          )
+            respProps.defaultOpenPanelCount,
+          ),
         );
       }
     }, [dataSource.length, field]);
@@ -105,6 +108,7 @@ export const ArrayCollapse: ComposedArrayCollapse = observer(
       }, null);
     };
     const renderEmpty = () => {
+      // @ts-ignore
       if (dataSource.length) return;
       return (
         <Card className={cls(`${prefixCls}-item`, respProps.className)}>
@@ -188,7 +192,7 @@ export const ArrayCollapse: ComposedArrayCollapse = observer(
         {renderAddition()}
       </ArrayBase>
     );
-  }
+  },
 );
 
 const CollapsePanel: React.FC<CollapsePanelProps> = ({ children }) => {
@@ -197,9 +201,6 @@ const CollapsePanel: React.FC<CollapsePanelProps> = ({ children }) => {
 
 CollapsePanel.displayName = "CollapsePanel";
 
-ArrayCollapse.defaultProps = {
-  defaultOpenPanelCount: 5,
-};
 ArrayCollapse.displayName = "ArrayCollapse";
 ArrayCollapse.CollapsePanel = CollapsePanel;
 

@@ -55,25 +55,25 @@ export interface ISideSheetProps extends Omit<SideSheetReactProps, "onCancel"> {
 export function FormSideSheet(
   title: ISideSheetProps,
   id: string,
-  renderer: FormSideSheetRenderer
+  renderer: FormSideSheetRenderer,
 ): IFormSideSheet;
 export function FormSideSheet(
   title: ISideSheetProps,
-  id: FormSideSheetRenderer
+  id: FormSideSheetRenderer,
 ): IFormSideSheet;
 export function FormSideSheet(
   title: SideSheetTitle,
   id: string,
-  renderer: FormSideSheetRenderer
+  renderer: FormSideSheetRenderer,
 ): IFormSideSheet;
 export function FormSideSheet(
   title: SideSheetTitle,
-  id: FormSideSheetRenderer
+  id: FormSideSheetRenderer,
 ): IFormSideSheet;
 export function FormSideSheet(
   title: any,
   id: any,
-  renderer?: any
+  renderer?: any,
 ): IFormSideSheet {
   if (isFn(id) || React.isValidElement(id)) {
     renderer = id;
@@ -139,7 +139,7 @@ export function FormSideSheet(
       env.promise = new Promise(async (resolve, reject) => {
         try {
           sideSheetProps = await loading(sideSheet.loadingText, () =>
-            applyMiddleware(sideSheetProps, env.openMiddlewares)
+            applyMiddleware(sideSheetProps, env.openMiddlewares),
           );
           env.form =
             env.form ||
@@ -173,10 +173,10 @@ export function FormSideSheet(
   return formSideSheet;
 }
 
-const SidSheetFooter: React.FC = (props) => {
+const SidSheetFooter = (props) => {
   const ref = useRef<HTMLDivElement>(null);
   const [footer, setFooter] = useState<HTMLDivElement>();
-  const footerRef = useRef<HTMLDivElement>();
+  const footerRef = useRef<HTMLDivElement | null>(null);
   const prefixCls = usePrefixCls("", {
     prefixCls: "semi-sidesheet",
   });
@@ -185,7 +185,7 @@ const SidSheetFooter: React.FC = (props) => {
     if (content) {
       if (!footerRef.current) {
         footerRef.current = content.querySelector(
-          `.${prefixCls}-footer`
+          `.${prefixCls}-footer`,
         ) as HTMLDivElement;
         if (!footerRef.current) {
           footerRef.current = document.createElement("div");

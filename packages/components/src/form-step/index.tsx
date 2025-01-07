@@ -158,12 +158,12 @@ export const FormStep: ComposedFormTab = connect(
         })}
       </div>
     );
-  })
+  }),
 );
 
-const StepPane: React.FC<StepProps> = ({ children }) => (
-  <Fragment>{children}</Fragment>
-);
+const StepPane: React.FC<React.PropsWithChildren<StepProps>> = ({
+  children,
+}) => <Fragment>{children}</Fragment>;
 
 FormStep.StepPane = StepPane;
 FormStep.createFormStep = createFormStep;

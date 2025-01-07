@@ -48,7 +48,7 @@ export const SchemaForm = forwardRef((props: SchemaFormProps, ref) => {
         return form;
       },
     }),
-    [form]
+    [form],
   );
   return (
     <Form form={form} {...restProps}>

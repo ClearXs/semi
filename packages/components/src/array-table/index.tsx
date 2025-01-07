@@ -37,7 +37,7 @@ interface IArrayTablePaginationProps extends PaginationProps {
   dataSource?: any[];
   children?: (
     dataSource: any[],
-    pagination: React.ReactNode
+    pagination: React.ReactNode,
   ) => React.ReactElement;
 }
 
@@ -117,7 +117,7 @@ const useArrayTableSources = () => {
 
 const useArrayTableColumns = (
   dataSource: any[],
-  sources: ObservableColumnSource[]
+  sources: ObservableColumnSource[],
 ): TableProps<any>["columns"] => {
   return sources.reduce(
     (buf: any, { name, columnProps, schema, display }, key) => {
@@ -142,7 +142,7 @@ const useArrayTableColumns = (
         },
       });
     },
-    []
+    [],
   );
 };
 
@@ -168,7 +168,7 @@ const StatusSelect: React.FC<IStatusSelectProps> = observer(
       return Number(
         address
           .slice(address.indexOf(field.address.toString()) + 1)
-          .match(/(\d+)/)?.[1]
+          .match(/(\d+)/)?.[1],
       );
     };
     const options = props.optionList?.map(({ label, value }: any) => {
@@ -207,7 +207,7 @@ const StatusSelect: React.FC<IStatusSelectProps> = observer(
         update();
       }, 100);
     },
-  }
+  },
 );
 
 const ArrayTablePagination: React.FC<IArrayTablePaginationProps> = (props) => {
@@ -266,7 +266,7 @@ const ArrayTablePagination: React.FC<IArrayTablePaginationProps> = (props) => {
     <Fragment>
       {props.children?.(
         dataSource?.slice(startIndex, endIndex + 1),
-        renderPagination()
+        renderPagination(),
       )}
     </Fragment>
   );
@@ -281,7 +281,7 @@ const ArrayTableWrapper: React.FC = (props: any) => {
   const { ref, field } = useContext(ArrayTableComponentsContext);
   const prefixCls = usePrefixCls("formily-array-table");
 
-  const addTdStyles = (node: HTMLElement) => {
+  const addTdStyles = (node: Element) => {
     const helper = document.body.querySelector(`.${prefixCls}-sort-helper`);
     if (helper) {
       const tds = node.querySelectorAll("td");
@@ -331,7 +331,7 @@ const arrayTableComponents = {
 
 export const ArrayTable: ComposedArrayTable = observer(
   (props: TableProps<any> & { arrayBaseProps: IArrayBaseProps }) => {
-    const ref: any = useRef<HTMLDivElement>();
+    const ref: any = useRef<HTMLDivElement | undefined>(undefined);
     const field = useField<ArrayField>();
     const prefixCls = usePrefixCls("array-table");
     const dataSource = Array.isArray(field.value) ? field.value.slice() : [];
@@ -379,7 +379,7 @@ export const ArrayTable: ComposedArrayTable = observer(
         )}
       </ArrayTablePagination>
     );
-  }
+  },
 );
 
 ArrayTable.displayName = "ArrayTable";

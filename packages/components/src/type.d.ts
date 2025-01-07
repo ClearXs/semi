@@ -1,4 +1,4 @@
-declare module '@formily/semi' {
+declare module '@clearx/formily-semi' {
   export { default as Form } from './form';
   export { default as FormGrid } from './form-grid';
   export { default as FormItem } from './form-item';

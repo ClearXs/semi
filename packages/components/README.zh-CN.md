@@ -1,4 +1,4 @@
-# @formily/semi
+# @clearx/formily-semi
 
 > Formily 组件库桥接层
 
@@ -13,7 +13,7 @@ https://semi.formilyjs.org/
 ## 安装
 
 ```bash
-npm install @formily/semi --save
+npm install @clearx/formily-semi --save
 ```
 
 安装组件库的 peerDependencies：
@@ -26,7 +26,7 @@ $ npm i -S @formily/core @formily/react @douyinfe/semi-ui
 
 ```typescript
 import React, { useCallback } from "react";
-import { SchemaForm } from "@formily/semi";
+import { SchemaForm } from "@clearx/formily-semi";
 import { ISchema } from "@formily/json-schema";
 import { useRef } from "react";
 import { Button } from "@douyinfe/semi-ui";

@@ -58,6 +58,7 @@ export const ArrayTabs: React.FC<TabsProps> = observer((props) => {
       field.remove(index);
     }
   };
+  // @ts-ignore
   return (
     <Tabs
       {...props}

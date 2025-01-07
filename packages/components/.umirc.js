@@ -8,9 +8,9 @@ export default {
   outputPath: "site",
   exportStatic: {},
   mode: "site",
-  title: "@formily/semi",
+  title: "@clearx/formily-semi",
   alias: {
-    "@formily/semi": resolve("src"),
+    "@clearx/formily-semi": resolve("src"),
   },
   links: [{ rel: "stylesheet", href: "/style.css" }],
   manifest: {},
